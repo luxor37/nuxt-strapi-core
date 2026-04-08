@@ -1,6 +1,6 @@
 {
   "name": "nuxt-strapi-core",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Reusable Nuxt 3 + Strapi 5 transport, auth, session and SSR proxy module.",
   "type": "module",
   "license": "MIT",
@@ -32,7 +32,7 @@
     "access": "public"
   },
   "engines": {
-    "node": "^22.0.0"
+    "node": "^20.19.0"
   },
   "scripts": {
     "build": "node ./scripts/build.mjs",
@@ -50,7 +50,7 @@
     "nuxt": "^3.17.0"
   },
   "devDependencies": {
-    "@types/node": "22.10.4",
+    "@types/node": "20.19.0",
     "esbuild": "0.25.12",
     "nuxt": "3.17.6",
     "tsx": "4.20.6",

@@ -11,7 +11,7 @@ Reusable Nuxt 3 + Strapi 5 core module for:
 
 ## Requirements
 
-- Node.js 22.x
+- Node.js 20.19+
 - Nuxt 3
 - Strapi 5
 
