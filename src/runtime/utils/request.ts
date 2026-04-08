@@ -1,4 +1,4 @@
-import { useRequestEvent, useRequestFetch, useRuntimeConfig } from '#imports'
+import { useRequestEvent, useRequestFetch, useRuntimeConfig } from 'nuxt/app'
 import { $fetch } from 'ofetch'
 import { useStrapiSession } from '../composables/useStrapiSession'
 import { resolveStrapiCoreConfig } from './config'
@@ -49,9 +49,17 @@ export async function useStrapiRequest<T>(
         headers.set('cookie', cookieHeader)
     }
 
-    const requestFetch = isServer ? useRequestFetch() : $fetch
+    if (isServer) {
+        const requestFetch = useRequestFetch()
 
-    return await requestFetch<T>(`${config.proxyBase}${path}`, {
+        return await requestFetch<T>(`${config.proxyBase}${path}`, {
+            ...options,
+            headers,
+            credentials: 'include',
+        } as any)
+    }
+
+    return await $fetch<T>(`${config.proxyBase}${path}`, {
         ...options,
         headers,
         credentials: 'include',

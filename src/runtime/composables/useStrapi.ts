@@ -1,4 +1,4 @@
-import { createError } from '#imports'
+import { createError } from 'nuxt/app'
 import type { StrapiEntity, StrapiResponse } from '../types'
 import { transformStrapiInput } from '../utils/payload'
 import { useStrapiRequest } from '../utils/request'

@@ -1,4 +1,4 @@
-import { createError, useRuntimeConfig } from '#imports'
+import { createError, useRuntimeConfig } from 'nuxt/app'
 import type { StrapiUser } from '../types'
 import { resolveStrapiCoreConfig } from '../utils/config'
 import { transformStrapiInput } from '../utils/payload'

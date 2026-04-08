@@ -45,7 +45,7 @@ async function main() {
         platform: 'node',
         target: 'es2022',
         sourcemap: true,
-        external: ['#imports', 'h3', 'nuxt/config', 'vue'],
+        external: ['h3', 'nuxt/app', 'nuxt/config', 'vue'],
         outExtension: { '.js': '.mjs' },
         logLevel: 'info'
     })

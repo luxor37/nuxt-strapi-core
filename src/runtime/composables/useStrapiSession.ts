@@ -1,4 +1,4 @@
-import { useNuxtApp, useRuntimeConfig, useState } from '#imports'
+import { useNuxtApp, useRuntimeConfig, useState } from 'nuxt/app'
 import { computed, readonly } from 'vue'
 import { createLocalStorageTokenAdapter } from '../session/adapters/local-storage'
 import type { StrapiSessionState, StrapiTokenAdapter, StrapiUser } from '../types'

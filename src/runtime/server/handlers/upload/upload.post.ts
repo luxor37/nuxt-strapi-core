@@ -15,11 +15,15 @@ export default defineEventHandler(async (event) => {
     const outboundForm = new FormData()
 
     for (const field of form) {
+        const fieldName = field.name || 'files'
+
         if (field.filename) {
-            const blob = new Blob([field.data], { type: field.type })
-            outboundForm.append(field.name, blob, field.filename)
+            const blob = new Blob([new Uint8Array(field.data)], {
+                type: field.type || 'application/octet-stream'
+            })
+            outboundForm.append(fieldName, blob, field.filename)
         } else {
-            outboundForm.append(field.name, field.data.toString())
+            outboundForm.append(fieldName, field.data.toString())
         }
     }
 

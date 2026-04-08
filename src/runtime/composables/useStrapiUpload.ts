@@ -1,4 +1,4 @@
-import { createError } from '#imports'
+import { createError } from 'nuxt/app'
 import type { StrapiUploadFile, StrapiUploadOptions } from '../types'
 import { useStrapiRequest } from '../utils/request'
 import { withSerializedQuery } from '../utils/query'

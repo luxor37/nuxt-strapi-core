@@ -4,10 +4,11 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'nuxt-strapi-core/**'
-      - '.github/workflows/nuxt-strapi-core-ci.yml'
-      - '.github/workflows/nuxt-strapi-core-publish.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: nuxt-strapi-core-publish-${{ github.ref }}
+  cancel-in-progress: false
 
 permissions:
   contents: read
@@ -16,9 +17,7 @@ permissions:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: nuxt-strapi-core
+    timeout-minutes: 15
 
     steps:
       - name: Checkout
@@ -27,7 +26,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20.19.0'
+          node-version-file: '.nvmrc'
           registry-url: 'https://registry.npmjs.org'
           cache: 'yarn'
           cache-dependency-path: yarn.lock
@@ -41,11 +40,14 @@ jobs:
       - name: Run unit tests and build checks
         run: yarn test:ci
 
+      - name: Run typecheck
+        run: yarn typecheck
+
       - name: Read package metadata
         id: package
         run: |
-          echo "name=$(node -p "require('./package.json').name")" >> "$GITHUB_OUTPUT"
-          echo "version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
+          echo "name=$(node -p 'require("./package.json").name')" >> "$GITHUB_OUTPUT"
+          echo "version=$(node -p 'require("./package.json").version')" >> "$GITHUB_OUTPUT"
 
       - name: Check whether version is already published
         id: published

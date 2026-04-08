@@ -5,20 +5,19 @@ on:
     branches:
       - main
       - dev
-    paths:
-      - 'nuxt-strapi-core/**'
-      - '.github/workflows/nuxt-strapi-core-ci.yml'
-      - '.github/workflows/nuxt-strapi-core-publish.yml'
+  pull_request:
+
+concurrency:
+  group: nuxt-strapi-core-ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
 
 jobs:
-  test-and-build:
+  verify:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: nuxt-strapi-core
+    timeout-minutes: 15
 
     steps:
       - name: Checkout
@@ -27,7 +26,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20.19.0'
+          node-version-file: '.nvmrc'
           cache: 'yarn'
           cache-dependency-path: yarn.lock
 
@@ -39,3 +38,6 @@ jobs:
 
       - name: Run unit tests and build checks
         run: yarn test:ci
+
+      - name: Run typecheck
+        run: yarn typecheck

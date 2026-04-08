@@ -6,6 +6,18 @@ const DEFAULT_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
 
 export type { StrapiCoreModuleOptions } from './runtime/types'
 
+declare module '@nuxt/schema' {
+    interface NuxtConfig {
+        strapiCore?: StrapiCoreModuleOptions
+    }
+
+    interface NuxtOptions {
+        strapiCore?: StrapiCoreModuleOptions
+    }
+}
+
+type ServerHandlerMethod = NonNullable<Parameters<typeof addServerHandler>[0]['method']>
+
 export default defineNuxtModule<StrapiCoreModuleOptions>({
     meta: {
         name: 'nuxt-strapi-core',
@@ -69,7 +81,7 @@ export default defineNuxtModule<StrapiCoreModuleOptions>({
         if ((options.transport || 'server-proxy') !== 'server-proxy')
             return
 
-        const register = (route: string, handler: string, method?: string) => {
+        const register = (route: string, handler: string, method?: ServerHandlerMethod) => {
             addServerHandler({
                 route,
                 handler: resolveRuntime(`/server/handlers/${handler}`),

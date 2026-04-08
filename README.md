@@ -9,6 +9,12 @@ Reusable Nuxt 3 + Strapi 5 core module for:
 - SSR cookie-backed proxy mode
 - direct browser-token mode for static deployments
 
+## Requirements
+
+- Node.js 22.x
+- Nuxt 3
+- Strapi 5
+
 This package is intentionally limited to reusable infrastructure. It does not include app-specific store wiring, `ensureUser()`, custom course/user endpoints, or file-manager orchestration such as global-vs-course libraries.
 
 ## Included APIs

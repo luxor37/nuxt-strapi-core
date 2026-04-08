@@ -1,5 +1,5 @@
 import { createError, deleteCookie, getCookie, getHeader, getRequestURL, setCookie, type EventHandlerRequest, type H3Event } from 'h3'
-import { useRuntimeConfig } from '#imports'
+import { useRuntimeConfig } from 'nuxt/app'
 import type { StrapiCookieOptions } from '../../types'
 
 function normalizeStrapiUrl(url: string): string {
