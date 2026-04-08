@@ -1,0 +1,41 @@
+name: nuxt-strapi-core CI
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+    paths:
+      - 'packages/nuxt-strapi-core/**'
+      - '.github/workflows/nuxt-strapi-core-ci.yml'
+      - '.github/workflows/nuxt-strapi-core-publish.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/nuxt-strapi-core
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.19.0'
+          cache: 'yarn'
+          cache-dependency-path: packages/nuxt-strapi-core/yarn.lock
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install package dependencies
+        run: yarn install --frozen-lockfile --non-interactive
+
+      - name: Run unit tests and build checks
+        run: yarn test:ci
