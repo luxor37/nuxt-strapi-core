@@ -1,4 +1,4 @@
-# `nuxt-strapi-core`
+# nuxt-strapi-core
 
 Reusable Nuxt 3 + Strapi 5 core module for:
 
