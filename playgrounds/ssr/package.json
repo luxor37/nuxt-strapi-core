@@ -1,0 +1,13 @@
+{
+  "name": "nuxt-strapi-core-ssr-playground",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build"
+  },
+  "dependencies": {
+    "@luxor37/nuxt-strapi-core": "file:../..",
+    "nuxt": "3.17.6"
+  }
+}

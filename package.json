@@ -1,0 +1,56 @@
+{
+  "name": "@luxor37/nuxt-strapi-core",
+  "version": "0.1.0",
+  "description": "Reusable Nuxt 3 + Strapi 5 transport, auth, session and SSR proxy module.",
+  "type": "module",
+  "license": "MIT",
+  "sideEffects": false,
+  "main": "./dist/module.mjs",
+  "module": "./dist/module.mjs",
+  "types": "./src/module.ts",
+  "exports": {
+    ".": {
+      "types": "./src/module.ts",
+      "import": "./dist/module.mjs"
+    },
+    "./module": {
+      "types": "./src/module.ts",
+      "import": "./dist/module.mjs"
+    },
+    "./runtime": {
+      "types": "./src/runtime/index.ts",
+      "import": "./dist/runtime/index.mjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "node ./scripts/build.mjs",
+    "clean": "node ./scripts/clean.mjs",
+    "typecheck": "nuxi typecheck ./playgrounds/ssr",
+    "test": "yarn test:ci",
+    "test:unit": "node --import tsx --test test/query.test.ts test/payload.test.ts",
+    "test:build": "yarn clean && yarn build && node --import tsx --test test/build-output.test.ts && npm pack --dry-run --cache ./.npm-cache",
+    "test:ci": "yarn test:unit && yarn test:build"
+  },
+  "dependencies": {
+    "@nuxt/kit": "3.17.6"
+  },
+  "peerDependencies": {
+    "nuxt": "^3.17.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.12",
+    "nuxt": "3.17.6",
+    "tsx": "4.20.6",
+    "typescript": "5.9.3"
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+}

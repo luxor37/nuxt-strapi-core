@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+*.tsbuildinfo
+*.tgz
+
+# Local package caches
+.npm-cache/
+.npm/
+
+# Test and coverage artifacts
+coverage/
+.nyc_output/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local playground artifacts
+playgrounds/*/.nuxt/
+playgrounds/*/.output/
+playgrounds/*/.nitro/
+playgrounds/*/dist/
+playgrounds/*/node_modules/
+playgrounds/*/.env
+playgrounds/*/.env.*
+
+# OS/editor noise
+.DS_Store
