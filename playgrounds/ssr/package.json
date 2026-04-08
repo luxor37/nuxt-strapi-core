@@ -7,7 +7,7 @@
     "build": "nuxt build"
   },
   "dependencies": {
-    "@luxor37/nuxt-strapi-core": "file:../..",
+    "nuxt-strapi-core": "file:../..",
     "nuxt": "3.17.6"
   }
 }

@@ -1,4 +1,4 @@
-# `@luxor37/nuxt-strapi-core`
+# `nuxt-strapi-core`
 
 Reusable Nuxt 3 + Strapi 5 core module for:
 
@@ -42,47 +42,47 @@ Recommended for static/generated apps.
 ```ts
 // nuxt.config.ts
 export default defineNuxtConfig({
-  modules: ['@luxor37/nuxt-strapi-core'],
+  modules: ["nuxt-strapi-core"],
   strapiCore: {
-    strapiUrl: process.env.STRAPI_URL || 'http://localhost:1337',
-    transport: 'server-proxy'
-  }
-})
+    strapiUrl: process.env.STRAPI_URL || "http://localhost:1337",
+    transport: "server-proxy",
+  },
+});
 ```
 
 ## Module Options
 
 ```ts
 export default defineNuxtConfig({
-  modules: ['@luxor37/nuxt-strapi-core'],
+  modules: ["nuxt-strapi-core"],
   strapiCore: {
-    strapiUrl: 'http://localhost:1337',
-    transport: 'server-proxy',
-    proxyBase: '/api/strapi',
+    strapiUrl: "http://localhost:1337",
+    transport: "server-proxy",
+    proxyBase: "/api/strapi",
     timeoutMs: 10000,
     auth: {
-      cookieName: 'strapi_jwt',
-      tokenStorageKey: 'strapi_jwt',
+      cookieName: "strapi_jwt",
+      tokenStorageKey: "strapi_jwt",
       cookie: {
-        path: '/',
-        maxAge: 60 * 60 * 24 * 7
-      }
-    }
-  }
-})
+        path: "/",
+        maxAge: 60 * 60 * 24 * 7,
+      },
+    },
+  },
+});
 ```
 
 ## Auth Example
 
 ```vue
 <script setup lang="ts">
-const auth = useStrapiAuth()
-const session = useStrapiSession()
+const auth = useStrapiAuth();
+const session = useStrapiSession();
 
 const login = async () => {
-  await auth.login('admin@example.com', 'secret')
-  await auth.getMe()
-}
+  await auth.login("admin@example.com", "secret");
+  await auth.getMe();
+};
 </script>
 ```
 
@@ -92,15 +92,18 @@ The module ships with a default local-storage adapter. If a project needs someth
 
 ```ts
 // plugins/00.strapi-adapter.client.ts
-import { defineStrapiTokenAdapter } from '@luxor37/nuxt-strapi-core/runtime'
+import { defineStrapiTokenAdapter } from "nuxt-strapi-core/runtime";
 
 export default defineNuxtPlugin((nuxtApp) => {
-  nuxtApp.provide('strapiSessionAdapter', defineStrapiTokenAdapter({
-    getToken: () => sessionStorage.getItem('strapi_jwt'),
-    setToken: (token) => sessionStorage.setItem('strapi_jwt', token),
-    clearToken: () => sessionStorage.removeItem('strapi_jwt')
-  }))
-})
+  nuxtApp.provide(
+    "strapiSessionAdapter",
+    defineStrapiTokenAdapter({
+      getToken: () => sessionStorage.getItem("strapi_jwt"),
+      setToken: (token) => sessionStorage.setItem("strapi_jwt", token),
+      clearToken: () => sessionStorage.removeItem("strapi_jwt"),
+    }),
+  );
+});
 ```
 
 ## Boundary

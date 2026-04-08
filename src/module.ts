@@ -8,7 +8,7 @@ export type { StrapiCoreModuleOptions } from './runtime/types'
 
 export default defineNuxtModule<StrapiCoreModuleOptions>({
     meta: {
-        name: '@luxor37/nuxt-strapi-core',
+        name: 'nuxt-strapi-core',
         configKey: 'strapiCore',
         compatibility: {
             nuxt: '^3.17.0'
