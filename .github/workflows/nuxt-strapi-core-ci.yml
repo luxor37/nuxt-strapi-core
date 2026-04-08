@@ -3,7 +3,6 @@ name: nuxt-strapi-core CI
 on:
   push:
     branches:
-      - main
       - dev
   pull_request:
 
