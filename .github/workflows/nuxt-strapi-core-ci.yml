@@ -6,7 +6,7 @@ on:
       - main
       - dev
     paths:
-      - 'packages/nuxt-strapi-core/**'
+      - 'nuxt-strapi-core/**'
       - '.github/workflows/nuxt-strapi-core-ci.yml'
       - '.github/workflows/nuxt-strapi-core-publish.yml'
 
@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: packages/nuxt-strapi-core
+        working-directory: nuxt-strapi-core
 
     steps:
       - name: Checkout
@@ -29,7 +29,7 @@ jobs:
         with:
           node-version: '20.19.0'
           cache: 'yarn'
-          cache-dependency-path: packages/nuxt-strapi-core/yarn.lock
+          cache-dependency-path: yarn.lock
 
       - name: Enable Corepack
         run: corepack enable
